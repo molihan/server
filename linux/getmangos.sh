@@ -255,6 +255,10 @@ function GetPrerequisites()
 	  # Ubuntu 17.10
 	  su -c "apt-get -y install curl autoconf automake cmake libbz2-dev libace-dev libssl-dev libmysqlclient-dev libtool" root
 	  ;;
+	"bionic")
+	  # Ubuntu 17.10
+	  su -c "apt-get -y install curl autoconf automake cmake libbz2-dev libace-dev libssl-dev libmysqlclient-dev libtool build-essential" root
+	  ;;
         *)
           OS_VER=0
           ;;
@@ -865,7 +869,7 @@ function BuildMaNGOS()
 
   # Attempt to create the build directory if it doesn't exist
   if [ ! -d "$SRCPATH/server/linux" ]; then
-    mkdir "$SRCPATH/server/linux"
+    mkdir -p "$SRCPATH/server/linux"
 
     # See if creation was successful
     if [ $? -ne 0 ]; then
@@ -1525,7 +1529,7 @@ function CreateCBProject
 {
   # Create the dircetory if it does not exist
   if [ ! -d $SRCPATH/server/linux ]; then
-    mkdir $SRCPATH/server/linux
+    mkdir -p $SRCPATH/server/linux
   fi
 
   # Now create the C::B project
